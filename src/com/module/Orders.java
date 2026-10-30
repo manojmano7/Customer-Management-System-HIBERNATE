@@ -64,15 +64,20 @@ public class Orders {
 		this.customer = customer;
 	}
 	
+	@JoinTable(name="order_offer",
+			joinColumns=@JoinColumn(name="order_id"),
+			inverseJoinColumns=@JoinColumn(name="offer_id"))
 	
-	@OneToMany(mappedBy="order")
-	private List<Reviews> reviews;
-	public List<Reviews> getReviews() {
-		return reviews;
+	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	private List<Offer> offer;
+	public List<Offer> getOffer() {
+		return offer;
 	}
-	public void setReviews(List<Reviews> reviews) {
-		this.reviews = reviews;
+	public void setOffer(List<Offer> offer) {
+		this.offer = offer;
 	}
+	
+	
 	
 	
 	
